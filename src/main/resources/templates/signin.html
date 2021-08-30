@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body class="signForm">
+	<th:block layout:fragment="content">
+
+		<main>
+
+			<div class="container mt-2 mb-4">
+
+
+				<div class="col-sm-8 ml-auto mr-auto">
+					<ul class="nav nav-pills nav-fill mb-1" id="pills-tab"
+						role="tablist">
+						<li class="nav-item"><a class="nav-link active"
+							th:href="@{/signin}">Sign In</a></li>
+						<li class="nav-item"><a class="nav-link" th:href="@{/signup}">Sign
+								Up</a></li>
+					</ul>
+					<div class="tab-content" id="pills-tabContent">
+						<div class="tab-pane fade show active" id="pills-signin"
+							role="tabpanel" aria-labelledby="pills-signin-tab">
+							<div class="col-sm-12 border border-primary shadow rounded pt-2">
+								<form method="post" id="singninFrom" th:action="@{/login}">
+									<div class="form-group">
+										<label class="font-weight-bold">Email <span
+											class="text-danger">*</span></label> <input type="email" name="email"
+											id="email" class="form-control"
+											placeholder="Enter valid email" required autocomplete="off">
+									</div>
+									<div class="form-group">
+										<label class="font-weight-bold">Password <span
+											class="text-danger">*</span></label> <input type="password"
+											name="password" id="password" class="form-control"
+											placeholder="***********" required autocomplete="off">
+									</div>
+									<input type="hidden" name="${_csrf.parameterName}"
+										value="${_csrf.token}" />
+
+<!-- 									<div class="form-group"> -->
+<!-- 										<input type="submit" name="submit" value="Sign In" -->
+<!-- 											class="btn btn-block btn-primary"> -->
+<!-- 									</div> -->
+
+									<div class="form-group " >
+										<button type="submit" id="login-btn"
+											class="btn btn-primary btn-block  ">Sign In</button>
+									</div>
+								</form>
+								<div class="col-sm-8 ml-auto mr-auto ">
+									<span th:if="${#httpServletRequest.queryString eq 'status=error'}"> <label
+										style="color: red;">Incorrect username and / or
+											password./ User account is locked </label>
+									</span> <br>
+								</div>
+
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</main>
+
+	</th:block>
+<th:block layout:fragment="content-footer">
+		<div th:replace="fragments/footer :: footer">footer</div>
+	</th:block>
+</body>
+</html>

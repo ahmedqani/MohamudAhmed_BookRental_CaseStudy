@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<th:block layout:fragment="content">
+
+		<main>
+			<div id="viewport">
+				<div th:replace="fragments/side :: side">side</div>
+				<!-- Content -->
+				<div id="contentSideBar">
+
+					<div class="container-fluid">
+						<div>
+							<br> <a class="btn btn-primary" href="/category-add">Add
+								a category</a>
+						</div>
+						<div>
+
+							<h3>Current categories</h3>
+							<table class="table table-striped table-dark table-boarded">
+								<thead>
+									<tr>
+										<!-- 										<th scope="col">Id</th> -->
+										<th scope="col">Category Id</th>
+										<th scope="col">Category Name</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="category : ${categories} ">
+										<td th:text="${category.id}" />
+										<td th:text="${category.name}" />
+										<td class="text-center">
+											<div>
+												<a class="btn btn-warning"
+													th:href="@{'/category-update?idCategory='+${category.id}}">
+													Edit
+												</a> <a class="btn btn-danger" href="#"> <i
+													
+													data-toggle="modal"
+													th:attr="data-target='#modal-delete'+${category.id}">Delete</i>
+												</a>
+											</div>
+
+										</td>
+
+										<div class="modal fade" th:id="modal-delete+${category.id}"
+											tabindex="-1">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h4 class="modal-title">Book deletion</h4>
+														<button type="button" class="close" data-dismiss="modal"
+															aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+													<div class="modal-body">
+														<p class="float-left">
+															Are you sur to delete this category " <span
+																th:text="${category.name}"></span>"
+														</p>
+													</div>
+													<div class="modal-footer justify-content-between">
+														<button type="button" class="btn btn-success"
+															data-dismiss="modal">Close</button>
+														<a class="btn  btn-danger "
+															th:href="@{'/category-delete?idCategory='+${category.id}}">
+															<i class="ace-icon fa fa-times"> Delete</i>
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</th:block>
+
+</body>
+</html>

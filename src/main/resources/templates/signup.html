@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body class="signForm">
+	<th:block layout:fragment="content">
+
+		<main>
+
+			<div class="container mt-2 mb-4">
+				<div class="col-sm-8 ml-auto mr-auto">
+					<ul class="nav nav-pills nav-fill mb-1">
+						<li class="nav-item"><a class="nav-link "
+							th:href="@{/signin}">Sign In</a></li>
+						<li class="nav-item"><a class="nav-link active"
+							th:href="@{/signup}">Sign Up</a></li>
+					</ul>
+					<div class="tab-content" id="pills-tabContent">
+						<div class="tab-pane fade show active" >
+							<div class="col-sm-12 border border-primary shadow rounded pt-2">
+								<form method="post"  th:action="@{/register}"
+									th:object="${user}" role="form">
+									<div class="form-group" th:class="${#fields.hasErrors('email')}? 'has-error form-group':'form-group' ">
+										<label class="font-weight-bold">Email <span
+											class="text-danger">*</span></label> <input type="email"
+											name="signupemail" id="signupemail" class="form-control" th:class="${#fields.hasErrors('email')}? 'inputError form-control':'form-control' "
+											placeholder="Enter valid email" required th:field="*{email}"
+											th:value="*{email}">
+									</div>
+									<div class="form-group" th:class="${#fields.hasErrors('username')}? 'has-error form-group':'form-group' ">
+										<label class="font-weight-bold">User Name <span
+											class="text-danger">*</span></label> <input type="text"
+											name="signupusername" id="signupusername"
+											class="form-control" placeholder="Choose your user name" th:class="${#fields.hasErrors('username')}? 'inputError form-control':'form-control' "
+											required th:field="*{username}" th:value="*{username}">
+										<div class="text-danger">
+											<em>This will be your login name!</em>
+										</div>
+									</div>
+									<div class="form-group" th:class="${#fields.hasErrors('password')}? 'has-error form-group':'form-group' ">
+										<label class="font-weight-bold">Password <span
+											class="text-danger">*</span></label> <input type="password" th:class="${#fields.hasErrors('password')}? 'inputError form-control':'form-control' "
+											name="signuppassword" id="signuppassword"
+											class="form-control" placeholder="***********"
+											pattern="^\S{6,}$"
+											onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.password_two.pattern = this.value;"
+											required th:field="*{password}" th:value="*{password}">
+									</div>
+									<div class="form-group" th:class="${#fields.hasErrors('confirmPassword')}? 'has-error form-group':'form-group' ">
+										<label class="font-weight-bold">Confirm Password <span
+											class="text-danger">*</span></label> <input type="password" th:class="${#fields.hasErrors('confirmPassword')}? 'inputError form-control':'form-control' "
+											name="signupcpassword" id="signupcpassword"
+											class="form-control" pattern="^\S{6,}$"
+											onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');"
+											placeholder="***********" required th:field="*{confirmPassword}"
+											th:value="*{confirmPassword}">
+									</div>
+									<div class="form-group">
+										<button class="btn btn-block btn-primary" type="submit">
+											<i class="ace-icon fa fa-check bigger-110"></i> Sign Up
+										</button>
+									</div>
+								</form>
+								
+								<div class="col-sm-8 ml-auto mr-auto ">
+									<span th:if="${usernameTook}"> <label
+										style="color: red;">This username is already taken, please use another username </label>
+									</span> <br>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+	</th:block>
+	<th:block layout:fragment="content-footer">
+		<div th:replace="fragments/footer :: footer">footer</div>
+	</th:block>
+
+</body>
+</html>

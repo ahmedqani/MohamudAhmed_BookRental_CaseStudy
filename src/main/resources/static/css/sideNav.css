@@ -1,0 +1,81 @@
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+
+#viewport {
+    overflow-x: hidden;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+}
+
+/* Toggle Styles */
+
+#viewport {
+    padding-left: 250px;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#contentSideBar {
+    width: 100%;
+    position: relative;
+    margin-right: 0;
+}
+
+/* Sidebar Styles */
+
+.sidebarLib {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 250px;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #37474F;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.sidebarLib header {
+    background-color: #263238;
+    font-size: 20px;
+    line-height: 52px;
+    text-align: center;
+}
+
+.sidebarLib header a {
+    color: #fff;
+    display: block;
+    text-decoration: none;
+}
+
+.sidebarLib header a:hover {
+    color: #fff;
+}
+
+.sidebarLib .lib{
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebarLib .lib a{
+    background: none;
+    display: flex;
+    border-bottom: 1px solid #455A64;
+    color: #CFD8DC;
+    font-size: 100%;
+    padding: 2%;
+}
+
+.sidebarLib .lib a:hover{
+    background: none;
+    color: #ECEFF1;
+}
+
+.sidebarLib .lib a i{
+    margin-right: 5%;
+}

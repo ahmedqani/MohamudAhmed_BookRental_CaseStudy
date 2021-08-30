@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<th:block layout:fragment="content">
+
+		<main>
+			<!-- SideNav -->
+			<div id="viewport">
+				<div class="sidebarLib">
+					<header>
+						<a href="#">My Account</a>
+					</header>
+					<ul class="nav lib">
+						<li><a th:href="@{/account}"> <i
+								class="zmdi zmdi-view-dashboard"></i> Dashboard
+						</a></li>
+						<li><a href="#"> <i class="zmdi zmdi-link"></i> Rented
+								Books
+						</a></li>
+						<li><a href="#"> <i class="zmdi zmdi-widgets"></i>
+								Overview
+						</a></li>
+						<li><a href="#" th:href="@{/logout}"> <i
+								class="ace-icon fa fa-power-off"></i> Logout
+						</a></li>
+					</ul>
+				</div>
+				<div id="contentSideBar">
+
+					<div class="container mt-2 mb-4">
+						<div class="col-sm-8 ml-auto mr-auto">
+							<div class="tab-content" id="pills-tabContent">
+								<div class="tab-pane fade show active">
+									<div
+										class="col-sm-12 border border-primary shadow rounded pt-2">
+										<form method="post" role="form" th:object="${user}"
+											th:action="@{/change-password}">
+											<div class="form-group" th:class="${#fields.hasErrors('password')}? 'has-error form-group':'form-group' ">
+												<label class="font-weight-bold">Password <span
+													class="text-danger">*</span></label> <input type="password"
+													name="password" id="password" class="form-control"
+													placeholder="*********" required
+													 th:field="*{password}"
+													th:value="*{password}">
+											</div>
+											<div class="form-group" th:class="${#fields.hasErrors('confirmPassword')}? 'has-error form-group':'form-group' ">
+												<label class="font-weight-bold">Confirm password <span 
+													class="text-danger">*</span></label> <input type="password" 
+													name="confirmPassword" id="confirmPassword"
+													class="form-control" placeholder="*********"
+													required th:field="*{confirmPassword}" th:class="${#fields.hasErrors('confirmPassword')}? 'inputError form-control':'form-control' "
+													th:value="*{confirmPassword}" >
+													<span th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="has-error">error</span>
+											</div>
+											<div class="form-group">
+										<button class="btn btn-block btn-primary" type="submit">
+											<i class="ace-icon fa fa-check bigger-110"></i> save
+										</button>
+									</div>
+
+										</form>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</main>
+	</th:block>
+</body>
+</html>

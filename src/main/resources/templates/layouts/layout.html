@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title>BRM</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<title th:text="${title}">Title</title>
+
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	rel="stylesheet" />
+<link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+<link href="@{/css/Style.css}" rel="stylesheet"
+	th:href="@{/css/Style.css}" />
+<link href="@{/css/Style.css}" rel="stylesheet"
+	th:href="@{/css/sideNav.css}" />
+<link href="../static/css/Style.css" rel="stylesheet"
+	th:href="@{/css/mobile-style.css}" />
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<header>
+		<div th:replace="fragments/header :: header">header</div>
+		<div layout:fragment="content-home"></div>
+	</header>
+
+	<div>
+
+		<div layout:fragment="content">
+			<p>Content goes here...</p>
+		</div>
+	</div>
+<div layout:fragment="content-footer"></div>
+<!-- 	<div th:replace="fragments/footer :: footer">footer</div> -->
+	<script type="text/javascript" src="js/main.js" th:src="@{/js/main.js}"></script>
+</body>
+</html>

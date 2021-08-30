@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout}">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<th:block layout:fragment="content">
+
+		<main>
+			<div id="viewport">
+				<div class="sidebarLib">
+					<header>
+						<a th:href="@{/library}" href="/library">Library</a>
+					</header>
+					<ul class="nav lib">
+						<li><a th:href="@{/library}" href="/library"> <i class="zmdi zmdi-view-dashboard"></i>
+								Dashboard
+						</a></li>
+						<li><a th:href="@{/search}"> <i class="zmdi zmdi-link"></i> LookUp
+								Books
+						</a></li>
+					</ul>
+				</div>
+				<!-- Content -->
+				<div id="contentSideBar">
+
+					<div class="container-fluid">
+						<div>
+							<br> <a class="btn btn-primary" href="/add">Add a Book</a> 
+						</div>
+						<div>
+
+							<h3>Current books</h3>
+							<table class="table table-striped table-dark table-boarded">
+								<thead>
+									<tr>
+										<!-- 										<th scope="col">Id</th> -->
+										<th scope="col">Book Name</th>
+										<th scope="col">Book Author</th>
+										<th scope="col">Book Desc</th>
+										<th scope="col">Book Category</th>
+										<th scope="col">Availability</th>
+										<th>Rent this Book</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="book : ${books} ">
+										<!-- 										<td th:text="${book.id}" /> -->
+										<td th:text="${book.name}" />
+										<td th:text="${book.author}" />
+										<td th:text="${book.description}" />
+										<td th:text="${book.category.name}" />
+										<td th:if="${book.available}"><span
+											class="fa fa-check fa-lg " style="color: #90EE90"></span></td>
+										<td th:if="${!book.available}"><span
+											class="fa fa-ban fa-lg" style="color: red"></span></td>
+										<td  th:if="${book.available}"><a class="btn btn-success"
+											th:href="@{'/book-rent?idBook='+${book.id}}">Rent </a></td>
+
+										<td  th:if="${!book.available}">-</td>
+
+										<td class="text-center">
+											<div>
+												<a class="btn btn-success"
+													th:href="@{'/book-detail?idBook='+${book.id}}">&nbsp; Detail&nbsp;
+												</a>
+											</div>
+
+										</td>
+
+										<div class="modal fade" th:id="modal-delete+${book.id}"
+											tabindex="-1">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h4 class="modal-title">Book deletion</h4>
+														<button type="button" class="close" data-dismiss="modal"
+															aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+													<div class="modal-body">
+														<p class="float-left">
+															Are you sur to delete this book <span
+																th:text="${book.name}"></span>
+														</p>
+													</div>
+													<div class="modal-footer justify-content-between">
+														<button type="button" class="btn btn-success"
+															data-dismiss="modal">Close</button>
+														<a class="btn  btn-danger "
+															th:href="@{'/book-delete?idBook='+${book.id}}"> <i
+															class="ace-icon fa fa-times"> Delete</i>
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</th:block>
+
+</body>
+</html>

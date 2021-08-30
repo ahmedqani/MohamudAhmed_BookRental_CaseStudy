@@ -1,0 +1,11 @@
+com.ahmedwar.brm
+com.ahmedwar.brm.config
+com.ahmedwar.brm.constants
+com.ahmedwar.brm.controllers
+com.ahmedwar.brm.entities
+com.ahmedwar.brm.exception
+com.ahmedwar.brm.repository
+com.ahmedwar.brm.services
+com.ahmedwar.brm.services.impl
+com.ahmedwar.brm.tests.repository
+com.ahmedwar.brm.tests.service

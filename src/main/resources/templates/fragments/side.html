@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+</head>
+<body>
+	<div th:fragment="side">
+		<div class="sidebarLib">
+			<header>
+				<a th:href="@{/account}">Account</a>
+			</header>
+			<ul class="nav lib">
+				<li><a th:href="@{/account}"> <i
+						class="zmdi zmdi-view-dashboard"></i> Dashboard
+				</a></li>
+				<li><a th:href="@{/rented-books}"> <i
+						class="zmdi zmdi-link"></i> Rented Books
+				</a></li>
+				<li sec:authorize="hasAnyRole('ROLE_ADMIN')"><a th:href="@{/categories}"> <i
+						class="zmdi zmdi-widgets"></i> Categories
+				</a></li>
+				
+				<li sec:authorize="hasAnyRole('ROLE_ADMIN')"><a th:href="@{/books}"> <i
+						class="zmdi zmdi-widgets"></i> Books
+				</a></li>
+
+				<li sec:authorize="hasAnyRole('ROLE_ADMIN')"><a th:href="@{/users}"> <i class="zmdi zmdi-widgets"></i>
+						Users
+				</a></li>
+				<li><a href="#" th:href="@{/logout}"> <i
+						class="ace-icon fa fa-power-off"></i> Logout
+				</a></li>
+			</ul>
+		</div>
+
+	</div>
+</body>
+</html>
